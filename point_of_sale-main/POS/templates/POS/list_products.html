@@ -1,0 +1,229 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    List Products
+{% endblock %}
+{% block content %}
+    <!-- page content -->
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>All Products <small>List of all the Products Store Wise</small></h3>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-sm-12">
+                                        <span class=" float-left text-muted font-13 mb-3">
+                                            List of all the Products Available
+                                        </span>
+                                <div role="presentation" class="dropdown float-right mr-5">
+                                    <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                       aria-haspopup="true" role="button" aria-expanded="false">
+                                        Select Store
+                                        <span class="caret"></span>
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        {% for store in stores %}
+                                            <a class="dropdown-item"
+                                               href="{% url 'list-products-by-store' store.id %}">{{ store.name }}</a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card-box table-responsive">
+                                <div id="datatable-responsive_wrapper"
+                                     class="dataTables_wrapper container-fluid dt-bootstrap no-footer">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table id="datatable-responsive"
+                                                   class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline"
+                                                   role="grid"
+                                                   aria-describedby="datatable-responsive_info"
+                                                   style="width: 100%;">
+                                                <thead>
+                                                <tr role="row">
+                                                    <th class="sorting_asc text-center" tabindex="0"
+                                                        aria-controls="datatable-responsive" rowspan="1"
+                                                        colspan="1" style="width: 81.2px;" aria-sort="ascending"
+                                                        aria-label="First name: activate to sort column descending">
+                                                        Image
+                                                    </th>
+                                                    <th class="sorting text-center" tabindex="0"
+                                                        aria-controls="datatable-responsive" rowspan="1"
+                                                        colspan="1" style="width: 80.2px;"
+                                                        aria-label="Last name: activate to sort column ascending">
+                                                        Code
+                                                    </th>
+                                                    <th class="sorting text-center" tabindex="0"
+                                                        aria-controls="datatable-responsive" rowspan="1"
+                                                        colspan="1" style="width: 81.2px;"
+                                                        aria-label="Office: activate to sort column ascending">
+                                                        Name
+                                                    </th>
+                                                    <th class="sorting text-center" tabindex="0"
+                                                        aria-controls="datatable-responsive" rowspan="1"
+                                                        colspan="1" style="width: 81.2px;"
+                                                        aria-label="Office: activate to sort column ascending">
+                                                        Type
+                                                    </th>
+                                                    <th class="sorting text-center" tabindex="0"
+                                                        aria-controls="datatable-responsive" rowspan="1"
+                                                        colspan="1" style="width: 81.2px;"
+                                                        aria-label="Office: activate to sort column ascending">
+                                                        Category
+                                                    </th>
+                                                    <th class="sorting text-center" tabindex="0"
+                                                        aria-controls="datatable-responsive" rowspan="1"
+                                                        colspan="1" style="width: 81.2px;"
+                                                        aria-label="Office: activate to sort column ascending">
+                                                        Quantity
+                                                    </th>
+                                                    <th class="sorting text-center" tabindex="0"
+                                                        aria-controls="datatable-responsive" rowspan="1"
+                                                        colspan="1" style="width: 81.2px;"
+                                                        aria-label="Office: activate to sort column ascending">
+                                                        Tax
+                                                    </th>
+                                                    <th class="sorting text-center" tabindex="0"
+                                                        aria-controls="datatable-responsive" rowspan="1"
+                                                        colspan="1" style="width: 81.2px;"
+                                                        aria-label="Office: activate to sort column ascending">
+                                                        Method
+                                                    </th>
+                                                    <th class="sorting text-center" tabindex="0"
+                                                        aria-controls="datatable-responsive" rowspan="1"
+                                                        colspan="1" style="width: 81.2px;"
+                                                        aria-label="Office: activate to sort column ascending">
+                                                        Cost
+                                                    </th>
+                                                    <th class="sorting text-center" tabindex="0"
+                                                        aria-controls="datatable-responsive" rowspan="1"
+                                                        colspan="1" style="width: 81.2px;"
+                                                        aria-label="Office: activate to sort column ascending">
+                                                        Price
+                                                    </th>
+                                                    <th class="sorting text-center" tabindex="0"
+                                                        aria-controls="datatable-responsive" rowspan="1"
+                                                        colspan="1" style="width: 81.2px;"
+                                                        aria-label="Office: activate to sort column ascending">
+                                                        Actions
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for storeproduct in storeproducts %}
+                                                    <tr role="row" class="odd">
+                                                        {% if storeproduct.product.image.url %}
+                                                            <td class="text-center"><img
+                                                                    src="{{ storeproduct.product.image.url }}" alt=""
+                                                                    style="max-width: 50px"></td>
+                                                        {% else %}
+                                                            <td class="text-center"><img
+                                                                    src="{% static 'images/img.jpg' %}"
+                                                                    alt="" style="max-width: 50px">
+                                                            </td>
+                                                        {% endif %}
+                                                        <td class="text-center">{{ storeproduct.product.code }}</td>
+                                                        <td class="text-center">{{ storeproduct.product.name }}</td>
+                                                        <td class="text-center">{{ storeproduct.product.type }}</td>
+                                                        <td class="text-center">{{ storeproduct.product.category }}</td>
+                                                        <td class="text-center">{{ storeproduct.product.quantity }}</td>
+                                                        <td class="text-center">{{ storeproduct.product.product_tax }}</td>
+                                                        <td class="text-center">{{ storeproduct.product.tax_method }}</td>
+                                                        <td class="text-center">{{ storeproduct.product.cost }}</td>
+                                                        <td class="text-center">{{ storeproduct.product.price }}</td>
+                                                        <td class="text-center" style="padding:6px;">
+                                                            <div class="btn-group btn-group-justified"
+                                                                 role="group">
+                                                                <div class="btn-group btn-group-xs"
+                                                                     role="group">
+                                                                    <a class="tip btn btn-warning btn-xs"
+                                                                       title="Edit Category"
+                                                                       href="{% url 'update-product' storeproduct.product.id %}"><i
+                                                                            class="fa fa-edit"></i></a>
+                                                                </div>
+                                                                <div class="btn-group btn-group-xs"
+                                                                     role="group">
+                                                                    <a class="tip btn btn-danger btn-xs"
+                                                                       title="Delete Category"
+                                                                       href="{% url 'delete-product' storeproduct.product.id %}"><i
+                                                                            class="fa fa-trash-o"></i></a>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <div class="dataTables_info" id="datatable-responsive_info" role="status"
+                                                 aria-live="polite">Showing page {{ page_obj.number }}
+                                                of {{ page_obj.paginator.num_pages }}
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <div class="dataTables_paginate paging_simple_numbers"
+                                                 id="datatable-responsive_paginate">
+                                                <ul class="pagination">
+                                                    {% if page_obj.has_previous %}
+                                                        <li class="paginate_button previous"
+                                                            id="datatable-responsive_previous"><a
+                                                                href="?page=1"
+                                                                aria-controls="datatable-responsive"
+                                                                data-dt-idx="0" tabindex="0">&laquo; First</a>
+                                                        </li>
+                                                        <li class="paginate_button previous"
+                                                            id="datatable-responsive_previous"><a
+                                                                href="?page={{ page_obj.previous_page_number }}"
+                                                                aria-controls="datatable-responsive"
+                                                                data-dt-idx="0" tabindex="0">Previous</a>
+                                                        </li>
+                                                    {% endif %}
+                                                    <li class="paginate_button active"><a href="#"
+                                                                                          aria-controls="datatable-responsive"
+                                                                                          data-dt-idx="1"
+                                                                                          tabindex="0">Page {{ page_obj.number }}
+                                                        of {{ page_obj.paginator.num_pages }}</a>
+                                                    </li>
+                                                    {% if page_obj.has_next %}
+                                                        <li class="paginate_button next" id="datatable-responsive_next">
+                                                            <a
+                                                                    href="?page={{ page_obj.next_page_number }}"
+                                                                    aria-controls="datatable-responsive"
+                                                                    data-dt-idx="7"
+                                                                    tabindex="0">Next</a>
+                                                        </li>
+                                                        <li class="paginate_button next" id="datatable-responsive_next">
+                                                            <a
+                                                                    href="?page={{ page_obj.paginator.num_pages }}"
+                                                                    aria-controls="datatable-responsive"
+                                                                    data-dt-idx="7"
+                                                                    tabindex="0">last &raquo;</a>
+                                                        </li>
+                                                    {% endif %}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /page content -->
+{% endblock %}
