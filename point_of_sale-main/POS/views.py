@@ -426,7 +426,7 @@ class CashInHandView(LoginRequiredMixin, StaffAdminRequiredMixin, CreateView):
         register = Register.objects.get(id=register_id, user=user, store=store)
         cash_in_hand = request.POST.get('opening_cash_in_hand')
         form = CashInHandForm(self.request.POST)
-        if cash_in_hand is not '':
+        if cash_in_hand != '':
             register.opening_cash_in_hand = cash_in_hand
             register.save()
             return redirect('create-sale', register_id=register_id, store_id=store_id)
