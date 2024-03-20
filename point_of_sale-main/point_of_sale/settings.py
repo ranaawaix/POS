@@ -13,6 +13,11 @@ from datetime import timedelta
 from pathlib import Path
 
 from django.urls import reverse_lazy
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,10 +27,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-1c7x3idr))^8=_rv5kffwfpl7v1k!@s9$^qtv6v6pfbo++(*xq'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'False')
 
 ALLOWED_HOSTS = ['*']
 
@@ -105,11 +110,11 @@ WSGI_APPLICATION = 'point_of_sale.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'poslocal',
-        'USER': 'Rana',
-        'PASSWORD': 'Raw@1994',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': os.getenv('NAME'),
+        'USER': os.getenv('USER'),
+        'PASSWORD': os.getenv('PASSWORD'),
+        'HOST': os.getenv('HOST'),
+        'PORT': os.getenv('PORT'),
     }
 }
 
