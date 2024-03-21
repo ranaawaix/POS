@@ -1,5 +1,5 @@
 from django.contrib import admin
-from POS.models import Customer, Store, StoreProduct, Sale, SaleItem, Payment, Hold, Register
+from .models import Customer, Store, StoreProduct, Sale, SaleItem, Payment, Hold, Register
 
 
 # Register your models here.

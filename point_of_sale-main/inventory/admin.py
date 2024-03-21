@@ -1,5 +1,5 @@
 from django.contrib import admin
-from inventory.models import Supplier, ProductType, Barcode, Category, Product, PurchaseOrder, PurchaseOrderItem, \
+from .models import Supplier, ProductType, Barcode, Category, Product, PurchaseOrder, PurchaseOrderItem, \
     Expense
 from POS.admin import ProductInline
 
@@ -42,9 +42,9 @@ class ProductTypeAdmin(admin.ModelAdmin):
     list_display = ['name']
 
 
-# @admin.register(Barcode)
-# class BarcodeAdmin(admin.ModelAdmin):
-#     list_display = ['name']
+@admin.register(Barcode)
+class BarcodeAdmin(admin.ModelAdmin):
+    list_display = ['name']
 
 
 @admin.register(Category)

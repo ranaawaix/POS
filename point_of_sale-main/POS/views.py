@@ -12,11 +12,11 @@ from django.views.generic import ListView, TemplateView, UpdateView, DeleteView
 from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import CreateView
 from django.views.generic.list import MultipleObjectMixin, MultipleObjectTemplateResponseMixin
-from POS.forms import SaleForm, HoldOrderForm, AddCustomerForm, PaymentForm, AddStoreForm, AddProductForm, \
+from .forms import SaleForm, HoldOrderForm, AddCustomerForm, PaymentForm, AddStoreForm, AddProductForm, \
     StoreProductForm, CashInHandForm, SaleReportFilterForm, PaymentReportFilterForm, RegistersReportFilterForm, \
     ProductsReportFilterForm
-from POS.models import Sale, Hold, Customer, Payment, Register, SaleItem
-from POS.models import Store, StoreProduct
+from .models import Sale, Hold, Customer, Payment, Register, SaleItem
+from .models import Store, StoreProduct
 from inventory.models import Product, PurchaseOrder, Expense
 from user_accounts.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
